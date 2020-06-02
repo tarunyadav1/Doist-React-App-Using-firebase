@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { firebase } from "../firebase";
 import { generatePushId } from "../helpers";
 import { useProjectsValue } from "../context";
+import PropTypes from "prop-types";
 
 export const AddProject = ({ shouldShow = false }) => {
   const [show, setShow] = useState(shouldShow);
@@ -36,10 +37,9 @@ export const AddProject = ({ shouldShow = false }) => {
             onChange={(e) => setProjectName(e.target.value)}
             className="add-project__name"
             data-testid="project-name"
-            placeholder="Name your project"
             type="text"
+            placeholder="Name your project"
           />
-
           <button
             className="add-project__submit"
             type="button"
@@ -48,10 +48,9 @@ export const AddProject = ({ shouldShow = false }) => {
           >
             Add Project
           </button>
-
           <span
             aria-label="Cancel adding project"
-            data-testid="hide-project-overly"
+            data-testid="hide-project-overlay"
             className="add-project__cancel"
             onClick={() => setShow(false)}
             onKeyDown={() => setShow(false)}
@@ -62,15 +61,20 @@ export const AddProject = ({ shouldShow = false }) => {
           </span>
         </div>
       )}
+
       {!show && (
         <>
           <span className="add-project__plus">+</span>
           <span
             aria-label="Add Project"
             data-testid="add-project-action"
-            onClick={() => setShow(!show)}
             className="add-project__text"
-            onKeyDown={() => setShow(!show)}
+            onClick={() => {
+              setShow(!show);
+            }}
+            onKeyDown={() => {
+              setShow(!show);
+            }}
             role="button"
             tabIndex={0}
           >
@@ -80,4 +84,8 @@ export const AddProject = ({ shouldShow = false }) => {
       )}
     </div>
   );
+};
+
+AddProject.propTypes = {
+  shouldShow: PropTypes.bool,
 };

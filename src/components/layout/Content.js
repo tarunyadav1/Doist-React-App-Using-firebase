@@ -2,11 +2,13 @@ import React from "react";
 import { Sidebar } from "./Sidebar";
 import { Tasks } from "../Tasks";
 
-export const Content = () => {
+export const Content = ({ showSidebar, setShowSidebar }) => {
   return (
-    <section className="content">
-      <Sidebar />
-      <Tasks />
-    </section>
+    <>
+      <section className="content">
+        <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+        <Tasks />
+      </section>
+    </>
   );
 };

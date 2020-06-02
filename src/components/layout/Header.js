@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { FaPizzaSlice, FaMoon, FaPlusCircle, FaPlus } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 import { AddTask } from "../AddTask";
 import sunlogo from "../../sun.svg";
-// import moonlogo from "../../logoofme.svg";
 import moonlogo from "../../moon.png";
 
-export const Header = ({ darkMode, setDarkMode }) => {
+export const Header = ({
+  darkMode,
+  setDarkMode,
+  showSidebar,
+  setShowSidebar,
+}) => {
   const [shouldShowMain, setShouldShowMain] = useState(false);
   const [showQuickAddTask, setShowQuickAddTask] = useState(false);
 
@@ -13,8 +17,18 @@ export const Header = ({ darkMode, setDarkMode }) => {
     <div>
       <header className="header" data-testid="header">
         <nav>
+          <div className="hamicon">
+            <img
+              onClick={() => {
+                setShowSidebar(!showSidebar);
+              }}
+              src="https://img.icons8.com/fluent/48/000000/menu--v1.png"
+              alt="hamicon"
+            />
+          </div>
           <div className="logo">
             <img src="/images/logo.png" alt="Todoist" />
+            <span>DOIST</span>
           </div>
           <div className="settings">
             <ul>
@@ -32,7 +46,13 @@ export const Header = ({ darkMode, setDarkMode }) => {
                     setShowQuickAddTask(true);
                   }}
                 >
-                  <FaPlus className="plus-icon" />
+                  <FaPlus
+                    className={
+                      darkMode
+                        ? "plus-icon plus-icon-white"
+                        : "plus-icon plus-icon-black"
+                    }
+                  />
                 </button>
               </li>
               <li className="settings__darkmode">

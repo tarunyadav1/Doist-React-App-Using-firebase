@@ -20,6 +20,7 @@ body {
   font-family: "Roboto", sans-serif;
   color: #202020;
   background-color: #fafafa;
+
   font-smooth: always;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -136,34 +137,172 @@ $generic-bg: #db4c3f;
 /* Darkmode
   ============================================ */
 .darkmode {
+  .main {
+    background-color: #272121;
+  }
+  /* Header darkmode 
+  ==========================================*/
   header {
     -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
     background-color: #282828;
     border-color: transparent;
+  }
 
-    transition: background-color 1s linear;
+  /* SideBar darkmode 
+  ==========================================*/
+  .sidebar {
+    background-color: #272121;
+    color: white;
+    &__project {
+      &.active,
+      &:hover {
+        font-weight: bold;
+        background-color: rgb(167, 161, 161);
+      }
+    }
+    h2 {
+      color: white;
+    }
+
+    svg {
+      color: #ff4d00;
+    }
+    &__generic {
+      li {
+        color: white;
+        &.active,
+        &:hover {
+          color: #3de2f8;
+          font-weight: bold;
+          background-color: rgb(167, 161, 161);
+        }
+      }
+    }
+
+    &__project-delete {
+      p {
+        color: black;
+      }
+    }
+  }
+
+  /* add project darkmode 
+  ==========================================*/
+
+  .add-project {
+    &__name {
+      background-color: white !important;
+    }
+    &__cancel {
+      color: white;
+    }
+
+    &__plus {
+      color: rgb(45, 217, 223);
+    }
+    &__text {
+      color: white;
+    }
+  }
+
+  /* task darkmode 
+  ==========================================*/
+
+  .tasks {
+    background-color: #443737;
+
+    h2 {
+      color: white;
+    }
+    &__list li {
+      color: white;
+    }
+    .checkbox-holder {
+      .checkbox {
+        border-color: white;
+      }
+    }
+  }
+  .tasks__image {
+    color: white;
+  }
+
+  /* add task darkmode 
+  ==========================================*/
+  .add-task {
+    &__text {
+      color: white;
+    }
+    &__plus {
+      color: rgb(45, 217, 223);
+    }
+    svg {
+      color: #ff4d00;
+    }
+    &__cancel {
+      color: white;
+    }
+  }
+}
+
+/* TO make mobile frinedly
+  ============================================ */
+.showMenu {
+  background-color: blue($color: #000000);
+  cursor: pointer;
+  position: relative;
+  width: 15em;
+  left: 10em;
+
+  button {
+    cursor: pointer;
+    border-radius: 25px;
+    border-style: none;
+
+    &:hover {
+      -webkit-box-shadow: 0px 0px 10px 0px rgba(56, 183, 255, 0.77);
+      -moz-box-shadow: 0px 0px 10px 0px rgba(56, 183, 255, 0.77);
+      box-shadow: 0px 0px 10px 0px rgba(56, 183, 255, 0.77);
+    }
+  }
+
+  img {
+    padding-left: 35px;
+    padding-bottom: 5px;
+  }
+
+  p {
+    font-weight: 700;
+    color: #383bff;
+    // justify-content: center;
+  }
+  @include mq("900px") {
+    display: none;
   }
 }
 
 /* Header
   ============================================ */
 header {
-  border-bottom: solid 1px #ca2100;
-  background-color: $generic-bg;
+  border-bottom: solid 1px #10b5e7;
+  background-color: white;
   -webkit-transition: height 200ms ease-in;
   transition: height 200ms ease-in;
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-  height: 44px;
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.1);
+  height: 50px;
   z-index: 400;
   position: fixed;
   top: 0;
   width: 100%;
-  transition: background-color 1s linear;
 
   @include mq("900px") {
     padding: 0 10px;
+
+    .logo {
+      display: none;
+    }
   }
 
   nav {
@@ -179,6 +318,20 @@ header {
     margin: auto;
     height: 44px;
 
+    .hamicon {
+      display: none;
+
+      @include mq("900px") {
+        display: block;
+        img {
+          cursor: pointer;
+
+          padding: 2px;
+          width: 35px;
+          padding-top: 0.5rem;
+        }
+      }
+    }
     p,
     li {
       color: white;
@@ -188,9 +341,18 @@ header {
       &.logo {
         padding-left: 8px;
         grid-area: 1 / 1;
+        span {
+          color: #38b7ff;
+          font-weight: bolder;
+          position: fixed;
+          top: auto;
+          padding-top: 15px;
+          bottom: auto;
+          font-size: 22px;
+        }
 
         img {
-          width: 24px;
+          width: 50px;
         }
       }
 
@@ -221,12 +383,23 @@ header {
           &.settings__add {
             margin-right: 15px;
             font-size: 30px;
+            svg {
+              color: black;
+            }
 
             button {
               @include transparent-button();
               color: white;
               cursor: pointer;
             }
+
+            .plus-icon-white {
+              color: rgb(33, 209, 233);
+            }
+            .plus-icon-black {
+              color: rgb(33, 178, 197);
+            }
+
             .plus-icon {
               height: 25px;
               width: 25px;
@@ -265,43 +438,59 @@ header {
 
 /* Sidebar
   ============================================ */
+.hideSidebar {
+  display: none;
+}
 .sidebar {
   @include no-select();
   width: 266px;
   height: calc(100vh);
   padding-top: 74px;
-  position: fixed;
+  position: absolute;
   overflow-x: hidden;
   overflow-y: auto;
   border-right: $generic-border;
   background-color: #fafafa;
+  transition: display 1s linear;
 
   @include mq("900px") {
-    display: none;
+    z-index: 99;
+    width: 80vw;
+    padding-top: 50px;
+    top: 5px;
+  }
+  &__generic {
+    img {
+      width: 23px;
+    }
   }
 
   li {
+    display: block;
     &:hover .sidebar__project-delete {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
+      flex: auto;
+      padding-top: 5px;
     }
+  }
+
+  &__project-name {
+    padding-top: 5px;
   }
 
   &__project {
     cursor: pointer;
+    padding: 5px 0;
 
     div:nth-child(1) {
-      padding: 5px 0;
-      padding-left: 10px;
-      padding-right: 15px;
-      width: 100%;
-      display: -webkit-box;
-      display: -ms-flexbox;
+      padding-left: 6px;
+      padding-right: 10px;
+
+      // width: 100%;
       display: flex;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
+      justify-content: space-between;
     }
 
     &-delete {
@@ -344,6 +533,31 @@ header {
         color: #af38eb;
       }
     }
+    &:nth-child(6) {
+      .sidebar__dot {
+        color: #191277;
+      }
+    }
+    &:nth-child(7) {
+      .sidebar__dot {
+        color: #cc2a3f;
+      }
+    }
+    &:nth-child(8) {
+      .sidebar__dot {
+        color: #2ec221;
+      }
+    }
+    &:nth-child(9) {
+      .sidebar__dot {
+        color: #21dfcf;
+      }
+    }
+    &:nth-child(10) {
+      .sidebar__dot {
+        color: #dabd2b;
+      }
+    }
   }
 
   &__projects {
@@ -372,19 +586,27 @@ header {
     span {
       color: #0000008a;
       margin-right: 10px;
+      img {
+        width: 20px;
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+        transition: all 0.2s linear;
+      }
 
-      svg.hidden-projects {
+      img.hidden-projects {
         -webkit-transform: rotate(-90deg);
         transform: rotate(-90deg);
+        transition: all 0.2s linear;
       }
     }
 
     h2 {
-      margin: 0;
+      // margin: 0;
       color: #333;
       font-size: 15px;
       font-weight: bold;
       padding-bottom: 20px;
+      margin-top: 2px;
     }
   }
 
@@ -427,6 +649,7 @@ header {
 
       &.active,
       &:hover {
+        color: #38b7ff;
         font-weight: bold;
         background-color: white;
       }
@@ -441,6 +664,8 @@ header {
 
   &__inner {
     @include box-overlay();
+    display: flex;
+    flex-direction: column;
     z-index: 99;
     width: 200px;
     padding: 10px;
@@ -450,7 +675,7 @@ header {
 
     p {
       margin-top: 5px;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
       line-height: normal;
       font-weight: normal;
       font-size: 15px;
@@ -464,6 +689,9 @@ header {
       font-weight: normal;
     }
   }
+  &__group {
+    padding-left: 10px;
+  }
 }
 
 /* Main Content
@@ -475,6 +703,7 @@ header {
   align-items: center;
   grid-template-columns: 1fr auto;
   max-width: 922px;
+  // width: 100%;
   margin: auto;
 }
 
@@ -497,9 +726,31 @@ header {
     width: auto;
   }
 
+  &__image {
+    // position: relative;
+
+    img {
+      width: 100%;
+    }
+
+    .taskcontent {
+      position: absolute;
+      top: 41vh;
+    }
+    h3 {
+      text-align: center;
+    }
+    p {
+      text-align: center;
+      opacity: 0.6;
+    }
+  }
+
   h2 {
-    font-size: 20px;
+    color: #000000;
     font-weight: normal;
+    font-size: 30px;
+
     margin: 0 30px 20px 0;
   }
 
@@ -635,7 +886,8 @@ header {
   }
 
   &__submit {
-    @include btn("90px");
+    padding: 2px;
+    @include btn("50px");
   }
 }
 
@@ -700,10 +952,10 @@ header {
   background-color: white;
   overflow: auto;
   height: 15em;
-  @include mq("900px") {
-    width: 200px;
-    right: 0;
-  }
+  // @include mq("900px") {
+  //   width: 200px;
+  //   right: 0;
+  // }
 
   &__list li {
     @include task-item();
@@ -735,6 +987,9 @@ header {
     height: 35px;
     padding-left: 10px;
     padding-right: 10px;
+    &::placeholder {
+      opacity: 0.4;
+    }
   }
 
   &__submit {

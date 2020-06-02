@@ -1,14 +1,23 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
+const API_KEY = process.env.REACT_APP_API_KEY;
+const AuthDom = process.env.REACT_APP_AUTH_DOM;
+const DataBaseUrl = process.env.REACT_APP_DATABASE_URL;
+const ProjectId = process.env.REACT_APP_PROJECT_ID;
+const Stroage = process.env.REACT_APP_STORGE;
+const SenderId = process.env.REACT_APP_SENDER_ID;
+const AppId = process.env.REACT_APP_APP_ID;
+const MeasureId = process.env.REACT_APP_MEASURE_ID;
 
 const firebaseConfig = firebase.initializeApp({
-  apiKey: "AIzaSyCQ6qoHtn7LOQdnlJ8dJCuukZ_cuFWMWgY",
-  authDomain: "todoist-clone-9859c.firebaseapp.com",
-  databaseURL: "https://todoist-clone-9859c.firebaseio.com",
-  projectId: "todoist-clone-9859c",
-  storageBucket: "todoist-clone-9859c.appspot.com",
-  messagingSenderId: "209176575669",
-  appId: "1:209176575669:web:5321b53e7dbac9bb4508fc",
+  apiKey: API_KEY,
+  authDomain: AuthDom,
+  databaseURL: DataBaseUrl,
+  projectId: ProjectId,
+  storageBucket: Stroage,
+  messagingSenderId: SenderId,
+  appId: AppId,
+  measurementId: MeasureId,
 });
 
 export { firebaseConfig as firebase };

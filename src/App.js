@@ -5,7 +5,8 @@ import { ProjectsProvider, SelectedProjectProvider } from "./context";
 
 const App = ({ darkModeDefault = false }) => {
   const [darkMode, setDarkMode] = useState(darkModeDefault);
-  console.log(darkMode);
+  const [showSidebar, setShowSidebar] = useState(true);
+
   return (
     <SelectedProjectProvider>
       <ProjectsProvider>
@@ -13,8 +14,17 @@ const App = ({ darkModeDefault = false }) => {
           data-testid="application"
           className={darkMode ? "darkmode" : undefined}
         >
-          <Header darkMode={darkMode} setDarkMode={setDarkMode}></Header>
-          <Content></Content>
+          <Header
+            showSidebar={showSidebar}
+            setShowSidebar={setShowSidebar}
+            darkMode={darkMode}
+            setDarkMode={setDarkMode}
+          ></Header>
+
+          <Content
+            showSidebar={showSidebar}
+            setShowSidebar={setShowSidebar}
+          ></Content>
         </main>
       </ProjectsProvider>
     </SelectedProjectProvider>

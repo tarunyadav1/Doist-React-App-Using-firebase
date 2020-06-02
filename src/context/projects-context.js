@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from "react";
 import { useProjects } from "../hooks";
+import PropTypes from "prop-types";
 
 export const ProjectsContext = createContext();
 export const ProjectsProvider = ({ children }) => {
@@ -13,3 +14,7 @@ export const ProjectsProvider = ({ children }) => {
 };
 
 export const useProjectsValue = () => useContext(ProjectsContext);
+
+ProjectsProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

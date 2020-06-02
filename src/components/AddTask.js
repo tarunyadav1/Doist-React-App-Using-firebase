@@ -5,6 +5,7 @@ import { firebase } from "../firebase";
 import { useSelectedProjectValue } from "../context";
 import { ProjectOverlay } from "./ProjectOverlay";
 import { TaskDate } from "./TaskDate";
+import PropTypes from "prop-types";
 
 export const AddTask = ({
   showAddTaskMain = true,
@@ -61,8 +62,12 @@ export const AddTask = ({
         <div
           className="add-task__shallow"
           data-testid="show-main-action"
-          onClick={() => setShowMain(!showMain)}
-          onKeyDown={() => setShowMain(!showMain)}
+          onClick={() => {
+            setShowMain(!showMain);
+          }}
+          onKeyDown={() => {
+            setShowMain(!showMain);
+          }}
           tabIndex={0}
           aria-label="Add task"
           role="button"
@@ -154,8 +159,14 @@ export const AddTask = ({
           <span
             className="add-task__project"
             data-testid="show-project-overlay"
-            onClick={() => setShowProjectOverlay(!showProjectOverlay)}
-            onKeyDown={() => setShowProjectOverlay(!showProjectOverlay)}
+            onClick={() => {
+              setShowProjectOverlay(!showProjectOverlay);
+              setShowTaskDate(false);
+            }}
+            onKeyDown={() => {
+              setShowProjectOverlay(!showProjectOverlay);
+              setShowTaskDate(false);
+            }}
             tabIndex={0}
             role="button"
           >
@@ -164,8 +175,14 @@ export const AddTask = ({
           <span
             className="add-task__date"
             data-testid="show-task-date-overlay"
-            onClick={() => setShowTaskDate(!showTaskDate)}
-            onKeyDown={() => setShowTaskDate(!showTaskDate)}
+            onClick={() => {
+              setShowTaskDate(!showTaskDate);
+              setShowProjectOverlay(false);
+            }}
+            onKeyDown={() => {
+              setShowTaskDate(!showTaskDate);
+              setShowProjectOverlay(false);
+            }}
             tabIndex={0}
             role="button"
           >
@@ -175,4 +192,11 @@ export const AddTask = ({
       )}
     </div>
   );
+};
+
+AddTask.propTypes = {
+  showAddTaskMain: PropTypes.bool,
+  shouldShowMain: PropTypes.bool,
+  showQuickAddTask: PropTypes.bool,
+  setShowQuickAddTask: PropTypes.func,
 };

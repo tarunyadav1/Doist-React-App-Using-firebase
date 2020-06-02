@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { CheckBox } from "./Checkbox";
 import { useTasks } from "../hooks/index";
 import { collatedTasks } from "../constants";
 import { AddTask } from "./AddTask";
 import { getTitle, getCollatedTitle, collatedTasksExist } from "../helpers";
 import { useSelectedProjectValue, useProjectsValue } from "../context";
+import taskImage from "../task.png";
 
 export const Tasks = () => {
+  const [showDefault, setShowDefault] = useState(true);
   const { selectedProject } = useSelectedProjectValue();
   const { projects } = useProjectsValue();
   const { tasks } = useTasks(selectedProject);
@@ -15,15 +17,13 @@ export const Tasks = () => {
 
   if (collatedTasksExist(selectedProject) && selectedProject) {
     projectName = getCollatedTitle(collatedTasks, selectedProject).name;
-    console.log("projectName 2", projectName);
   }
 
   if (projects && selectedProject && !collatedTasksExist(selectedProject)) {
     projectName = getTitle(projects, selectedProject).name;
-    console.log("projectName 1", projectName);
   }
   useEffect(() => {
-    document.title = `${projectName}: Todoist`;
+    document.title = `${projectName}: Doist`;
   });
 
   return (
@@ -38,7 +38,17 @@ export const Tasks = () => {
           </li>
         ))}
       </ul>
-      <AddTask />
+      <AddTask setshowDefault={setShowDefault} />
+
+      {tasks.length === 0 && showDefault ? (
+        <div className="tasks__image">
+          <img src={taskImage} alt="" />
+          <h3>Keep your tasks organized in projects</h3>
+          <p>Group your tasks by goal or area of your life.</p>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
