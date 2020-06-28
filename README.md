@@ -2,7 +2,7 @@
 
 ## [Check it live here](https://doistnow.netlify.app/)
 
-<a href="https://ibb.co/8Pvx7qQ"><img src="https://i.ibb.co/F8ZYD2d/smartmockups-kawbi5mr.png" alt="smartmockups-kawbi5mr" border="0" /></a>
+<img src="https://i.ibb.co/pd3mS0p/smartmockups-kawbi5mr.png" alt="smartmockups-kawbi5mr" border="0">
 
 Task Manager App with Dark Mode. This is inspire by Todoist and can be consider as lite version of Todoist App.
 
